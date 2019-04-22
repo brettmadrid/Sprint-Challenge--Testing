@@ -23,5 +23,14 @@ describe('The server', () => {
       expect(res.body).toEqual({ message: 'get successful' });
     });
   });
-  
+
+  describe('/Games testing', () => {
+    it('should respond with an empty array when there are not any games', async () => {
+      const res = await request(server).get('/games');
+
+      expect(res.status).toBe(200);
+      expect(res.type).toBe('application/json');
+      expect(res.body).toEqual([]);
+    });
+  });
 });
