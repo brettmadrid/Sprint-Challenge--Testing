@@ -62,5 +62,11 @@ describe("The server", () => {
 
       expect(res.status).toBe(422);
     });
+
+    xit('should respond with a status of 201 if game is successfully posted', async () => {
+      const res = await request(server).post('/games').send({ title: 'Pacman', genre: 'Arcade', releaseYear: 1980 });
+
+      expect(res.status).toEqual(201);
+    })
   });
 });

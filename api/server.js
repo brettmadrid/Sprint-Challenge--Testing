@@ -24,9 +24,9 @@ server.post("/games", async (req, res) => {
         message: "Unable to complete server request. Missing required field(s)"
       });
   } else {
-    const allGames = await Games.getAll();
+    const games = await games.getAll();
 
-    res.status(201).json(allGames);
+    res.status(201).json(games);
   }
 });
 
