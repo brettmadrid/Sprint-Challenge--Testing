@@ -41,15 +41,18 @@ describe("The server", () => {
 
     it('should respond with an array of all the games in the db and a status of 200', async () => {
       await db('games').insert({ title: 'Pacman', genre: 'Arcade', releaseYear: 1980 });
+      await db('games').insert({title: 'Donkey Kong', genre: 'Arcade', releaseYear: 1981})
 
       const res = await request(server).get('/games');
       const data = res.body
 
       expect(res.status).toBe(200);
       expect(res.type).toBe('application/json');
-      expect(data.length).toEqual(1);
+      expect(data.length).toEqual(2);
       expect(data[0].id).toBe(1);
       expect(data[0].title).toBe('Pacman');
+      expect(data[1].id).toBe(2);
+      expect(data[1].title).toBe('Donkey Kong');
     });
   });
 });
