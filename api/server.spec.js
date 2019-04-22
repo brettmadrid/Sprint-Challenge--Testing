@@ -25,7 +25,7 @@ describe("The server", () => {
     });
   });
 
-  describe("/Games testing", () => {
+  describe("/Games endpoint testing", () => {
 
     beforeEach(() => {
       return db('games').truncate();
@@ -53,6 +53,14 @@ describe("The server", () => {
       expect(data[0].title).toBe('Pacman');
       expect(data[1].id).toBe(2);
       expect(data[1].title).toBe('Donkey Kong');
+    });
+
+    it('should respond with a status of 422 if any required fields are missing', async () => {
+      const testData = { title: 'Pacman', releaseYear: 1980 };
+
+      const res = await request(server).post('/games').send(testData);
+
+      expect(res.status).toBe(422);
     });
   });
 });
