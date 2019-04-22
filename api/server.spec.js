@@ -16,6 +16,12 @@ describe('The server', () => {
       const res = await request(server).get("/");
       expect(res.type).toBe('application/json');
     });
+
+    it(`should return { message: 'get successful' }`, async () => {
+      const res = await request(server).get('/');
+
+      expect(res.body).toEqual({ message: 'get successful' });
+    });
   });
   
 });
